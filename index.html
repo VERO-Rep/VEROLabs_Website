@@ -27,11 +27,20 @@
             scroll-behavior: smooth;
         }
 
+        /* Update this section */
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden; /* Crucial: Cuts off the horizontal overflow */
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            overflow-x: hidden;
             line-height: 1.7;
+            /* Remove the old overflow-x here, we handled it in html, body above */
         }
 
         a {
@@ -129,7 +138,8 @@
             height: 42px;
             width: auto;
             display: block;
-            mix-blend-mode: screen; 
+            mix-blend-mode: screen;
+            max-width: 180px; /* Add this: prevents logo from pushing hamburger off screen */
         }
 
         nav ul {
@@ -287,9 +297,9 @@
         }
 
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 3.5rem;
             line-height: 1.1;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             max-width: 1100px;
             letter-spacing: -1px;
             opacity: 0;
@@ -465,7 +475,7 @@
         .slide-right { transform: translateX(100px); opacity: 0; }
 
         @media (max-width: 900px) {
-            .hero h1 { font-size: 3rem; }
+            .hero h1 { font-size: 2.3rem; }
             .grid-2 { grid-template-columns: 1fr; }
             
             /* How It Works Mobile */
@@ -510,7 +520,7 @@
         </nav>
         
         <div class="header-right">
-            <a href="#" class="btn-login">LOGIN</a>
+            <a href="#" class="btn-login">Experiences</a>
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -520,11 +530,11 @@
     </header>
 
     <section class="hero">
-        <h1 class="text-gradient">VEROlabs All-in-One Platform</h1>
-        <p>For Immersive VR Education & Training</p>
+        <h1 class="text-white">VEROlabs All-in-One Platform For Immersive VR Education & Training</h1>
+        <!-- <p>For Immersive VR Education & Training</p> -->
 
         <div class="hero-btns">
-            <button class="cta-btn">Get Started</button>
+            <button class="cta-btn" onclick="window.location.href='#contact'">Get Quote</button>
             <button class="cta-btn secondary-btn">See Catalogue</button>
         </div>
     </section>
@@ -544,7 +554,7 @@
                 </p>
             </div>
             <div class="tilt-card" style="padding: 10px; display:flex; align-items:center; justify-content:center;">
-                <img src="Screenshot 2026-02-08 172820.png" alt="VR Student" style="border-radius: 15px;">
+                <img src="pexels-sound-on-3761152.jpg" alt="VR Student" style="border-radius: 15px;">
             </div>
         </div>
     </section>
@@ -778,14 +788,14 @@
                 <li><span>•</span> Scale easily with your student base and academic needs.</li>
             </ul>
             <div style="margin-top:50px;">
-                <button class="cta-btn">Contact Sales</button>
+                <button class="cta-btn" onclick="window.location.href='#contact'">Contact Sales</button>
             </div>
         </div>
     </section>
 
     <section id="contact" class="reveal fade-up">
         <div class="section-header">
-            <h2>GET IN TOUCH</h2>
+            <h2>Get Quote</h2>
         </div>
         <div class="contact-container tilt-card">
             <h3 class="text-gradient" style="margin-bottom: 30px; text-align: center;">Send us a message</h3>
