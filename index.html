@@ -27,10 +27,18 @@
             scroll-behavior: smooth;
         }
 
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            overflow-x: hidden;
             line-height: 1.7;
         }
 
@@ -97,8 +105,15 @@
         }
 
         @keyframes breathe {
-            0% { transform: scale(1); opacity: 0.3; }
-            100% { transform: scale(1.1); opacity: 0.5; }
+            0% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+
+            100% {
+                transform: scale(1.1);
+                opacity: 0.5;
+            }
         }
 
         /* --- UTILITIES --- */
@@ -129,7 +144,8 @@
             height: 42px;
             width: auto;
             display: block;
-            mix-blend-mode: screen; 
+            mix-blend-mode: screen;
+            max-width: 180px;
         }
 
         nav ul {
@@ -170,7 +186,6 @@
         }
 
         .btn-login {
-            /* border: 2px solid transparent; */
             background-origin: border-box;
             background-clip: content-box, border-box;
             padding: 8px 25px;
@@ -209,9 +224,11 @@
         .hamburger.active span:nth-child(1) {
             transform: rotate(45deg) translate(5px, 6px);
         }
+
         .hamburger.active span:nth-child(2) {
             opacity: 0;
         }
+
         .hamburger.active span:nth-child(3) {
             transform: rotate(-45deg) translate(5px, -6px);
         }
@@ -287,9 +304,9 @@
         }
 
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 3.5rem;
             line-height: 1.1;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             max-width: 1100px;
             letter-spacing: -1px;
             opacity: 0;
@@ -316,7 +333,10 @@
         }
 
         @keyframes heroFade {
-            to { opacity: 1; transform: translateY(0); }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .section-header {
@@ -345,45 +365,229 @@
             transform-style: preserve-3d;
             perspective: 1000px;
         }
+
         .tilt-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
-            background: var(--brand-gradient); opacity: 0.7;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--brand-gradient);
+            opacity: 0.7;
         }
+
         .tilt-card:hover {
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             border-color: rgba(255, 255, 255, 0.2);
         }
 
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px;}
+        /* --- KINETIC SPLIT CARDS (New Design) --- */
+        .why-card {
+            padding: 0 !important;
+            /* Reset padding */
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+        }
 
-        .bullet-list li { margin-bottom: 18px; color: #ddd; display: flex; align-items: flex-start; }
-        .bullet-list li span { color: #0fd9de; margin-right: 15px; font-size: 1.2rem; margin-top: -2px; }
+        /* The Image Container */
+        .why-img-box {
+            height: 240px;
+            /* Fixed height for image area */
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .why-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            transform: scale(1.1);
+            /* Start slightly zoomed in */
+            /* filter: grayscale(100%) contrast(1.2); */
+            /* Start B&W for a tech feel */
+        }
+
+        /* Color Overlay (The "Filter" Effect) */
+
+
+        /* The Text Container */
+        .why-txt-box {
+            padding: 35px;
+            flex: 1;
+            background-color: #000a1e !important;
+            position: relative;
+            z-index: 2;
+        }
+
+        .why-txt-box h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            position: relative;
+        }
+
+        /* Hover Effects */
+        .why-card:hover {
+            border-color: rgba(133, 13, 204, 0.5);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(133, 13, 204, 0.2);
+        }
+
+        .why-card:hover .why-img-box img {
+            transform: scale(1);
+            /* Zoom out effect */
+            filter: grayscale(0%) contrast(1);
+            /* Reveal color */
+        }
+
+
+
+        /* --- LAYOUT GRIDS --- */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .bullet-list li {
+            margin-bottom: 18px;
+            color: #ddd;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .bullet-list li span {
+            color: #0fd9de;
+            margin-right: 15px;
+            font-size: 1.2rem;
+            margin-top: -2px;
+        }
 
         /* --- HOW IT WORKS STYLES --- */
-        .hiw-section { display: flex; flex-direction: column; gap: 120px; }
-        .hiw-row { display: flex; align-items: center; gap: 60px; }
-        .hiw-row.reverse { flex-direction: row-reverse; }
-        .hiw-content { flex: 1; }
-        .hiw-visual { flex: 1.2; position: relative; height: 400px; }
+        .hiw-section {
+            display: flex;
+            flex-direction: column;
+            gap: 120px;
+        }
+
+        .hiw-row {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hiw-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .hiw-content {
+            flex: 1;
+        }
+
+        .hiw-visual {
+            flex: 1.2;
+            position: relative;
+            height: 400px;
+        }
+
         .img-card {
-            position: absolute; border-radius: 15px; border: 1px solid var(--card-border);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5); transition: 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: absolute;
+            border-radius: 15px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            transition: 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
             overflow: hidden;
         }
-        .img-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; transition: 0.5s; }
-        .img-main { width: 85%; height: 85%; top: 0; left: 0; z-index: 1; }
-        .img-float { width: 60%; height: 60%; bottom: 0; right: 0; z-index: 2; border: 2px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
-        .hiw-row.reverse .img-main { right: 0; left: auto; }
-        .hiw-row.reverse .img-float { left: 0; right: auto; }
-        .hiw-visual:hover .img-main { transform: scale(0.98); box-shadow: 0 0 30px var(--neon-purple); }
-        .hiw-visual:hover .img-float { transform: scale(1.05) translateY(-10px); box-shadow: 0 0 30px var(--neon-blue); border-color: white; }
-        .hiw-number { font-size: 4rem; font-weight: 800; color: rgba(255,255,255,0.05); line-height: 1; margin-bottom: -20px; }
-        .hiw-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 20px; }
-        .hiw-desc { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px; }
 
-        /* --- NEW FEATURES GRID (To match attachment) --- */
+        .img-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+            transition: 0.5s;
+        }
+
+        .img-main {
+            width: 85%;
+            height: 85%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .img-float {
+            width: 60%;
+            height: 60%;
+            bottom: 0;
+            right: 0;
+            z-index: 2;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .hiw-row.reverse .img-main {
+            right: 0;
+            left: auto;
+        }
+
+        .hiw-row.reverse .img-float {
+            left: 0;
+            right: auto;
+        }
+
+        .hiw-visual:hover .img-main {
+            transform: scale(0.98);
+            box-shadow: 0 0 30px var(--neon-purple);
+        }
+
+        .hiw-visual:hover .img-float {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 0 30px var(--neon-blue);
+            border-color: white;
+        }
+
+        .hiw-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.215);
+            line-height: 1;
+            margin-bottom: -20px;
+        }
+
+        .hiw-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hiw-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 80px;
+        }
+
+        /* --- NEW FEATURES GRID --- */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -417,8 +621,7 @@
             stroke-width: 1.5;
             transition: 0.3s;
         }
-        
-        /* Make strokes slightly thicker on hover and change color */
+
         .feature-item:hover .feature-icon svg {
             stroke: #0fd9de;
             filter: drop-shadow(0 0 5px rgba(15, 217, 222, 0.5));
@@ -436,51 +639,209 @@
             line-height: 1.6;
         }
 
-        /* --- CONTACT FORM --- */
-        .contact-container { max-width: 600px; margin: 0 auto; }
-        .form-group { margin-bottom: 25px; }
-        .form-input {
-            width: 100%; padding: 16px 25px; background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--card-border); border-radius: 12px;
-            color: #fff; font-size: 1rem; transition: 0.3s;
+        /* --- SPOTLIGHT FEATURES (New Section Styles) --- */
+        .spotlight-row {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 60px;
         }
+
+        .spotlight-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .spotlight-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .spotlight-content {
+            flex: 1;
+        }
+
+        .spotlight-media {
+            flex: 1.1;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .spotlight-media img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .spotlight-media:hover img {
+            transform: scale(1.03);
+        }
+
+        .logo-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            /* margin-top: 30px; */
+            align-items: center;
+        }
+
+        .logo-placeholder {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 200px;
+            height: 120px;
+        }
+
+        .logo-placeholder img {
+            max-height: 100%;
+            width: auto;
+            opacity: 1;
+            transition: 0.3s;
+        }
+
+        .logo-placeholder:hover img {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* --- CONTACT FORM --- */
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
         .form-input:focus {
-            outline: none; border-color: #850dcc; background: rgba(0, 0, 0, 0.5);
+            outline: none;
+            border-color: #850dcc;
+            background: rgba(0, 0, 0, 0.5);
             box-shadow: 0 0 15px rgba(133, 13, 204, 0.2);
         }
-        textarea.form-input { min-height: 150px; resize: vertical; }
+
+        textarea.form-input {
+            min-height: 150px;
+            resize: vertical;
+        }
 
         /* --- FOOTER --- */
         footer {
-            background: #020205; padding: 80px 10%; text-align: center;
-            border-top: 1px solid var(--card-border); position: relative; z-index: 2;
+            background: #020205;
+            padding: 80px 10%;
+            text-align: center;
+            border-top: 1px solid var(--card-border);
+            position: relative;
+            z-index: 2;
         }
 
         /* --- ANIMATIONS --- */
-        .reveal { opacity: 0; transition: all 1s ease-out; }
-        .reveal.active { opacity: 1; transform: translateX(0) translateY(0); }
-        
-        .fade-up { transform: translateY(50px); }
-        .slide-left { transform: translateX(-100px); opacity: 0; }
-        .slide-right { transform: translateX(100px); opacity: 0; }
+        .reveal {
+            opacity: 0;
+            transition: all 1s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateX(0) translateY(0);
+        }
+
+        .fade-up {
+            transform: translateY(50px);
+        }
+
+        .slide-left {
+            transform: translateX(-100px);
+            opacity: 0;
+        }
+
+        .slide-right {
+            transform: translateX(100px);
+            opacity: 0;
+        }
 
         @media (max-width: 900px) {
-            .hero h1 { font-size: 3rem; }
-            .grid-2 { grid-template-columns: 1fr; }
-            
-            /* How It Works Mobile */
-            .hiw-row, .hiw-row.reverse { flex-direction: column; gap: 40px; }
-            .hiw-visual { width: 100%; height: 300px; }
-
-            .hamburger { display: flex; }
-            nav ul {
-                display: none; flex-direction: column; position: absolute;
-                top: 100%; left: 0; width: 100%; background: rgba(5, 5, 16, 0.95);
-                backdrop-filter: blur(20px); padding: 30px 0; border-bottom: 1px solid var(--card-border);
-                align-items: center; gap: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            .hero h1 {
+                font-size: 2.3rem;
             }
-            nav ul.active { display: flex; animation: slideDown 0.3s ease forwards; }
-            @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .spotlight-row,
+            .spotlight-row.reverse {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            /* How It Works Mobile */
+            .hiw-row,
+            .hiw-row.reverse {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .hiw-visual {
+                width: 100%;
+                height: 300px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(5, 5, 16, 0.95);
+                backdrop-filter: blur(20px);
+                padding: 30px 0;
+                border-bottom: 1px solid var(--card-border);
+                align-items: center;
+                gap: 25px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            }
+
+            nav ul.active {
+                display: flex;
+                animation: slideDown 0.3s ease forwards;
+            }
+
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
         }
     </style>
 </head>
@@ -508,9 +869,9 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
-        
+
         <div class="header-right">
-            <a href="#" class="btn-login">LOGIN</a>
+            <a href="https://verolabsxr.com/" target="_blank" class="btn-login">Experiences</a>
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -520,12 +881,11 @@
     </header>
 
     <section class="hero">
-        <h1 class="text-gradient">VEROlabs All-in-One Platform</h1>
-        <p>For Immersive VR Education & Training</p>
+        <h1 class="text-white">VEROlabs All-in-One Platform For Immersive VR Education & Training</h1>
 
         <div class="hero-btns">
-            <button class="cta-btn">Get Started</button>
-            <button class="cta-btn secondary-btn">See Catalogue</button>
+            <button class="cta-btn" onclick="window.location.href='#contact'">Get Quote</button>
+            <button class="cta-btn secondary-btn" onclick="window.open('https://verolabsxr.com/');">See Catalogue</button>
         </div>
     </section>
 
@@ -537,14 +897,17 @@
             <div>
                 <h3 class="text-gradient" style="font-size:2rem; margin-bottom:25px;">About VEROlabs</h3>
                 <p style="color:var(--text-muted); margin-bottom:20px; font-size: 1.1rem;">
-                    VEROlabs is All-in-One platform that transforms education and training through immersive Virtual Reality (VR) experiences,students and educators can explore and run VR experiments across different disciplines.
+                    VEROlabs is All-in-One platform that transforms education and training through immersive Virtual
+                    Reality (VR) experiences,students and educators can explore and run VR experiments across different
+                    disciplines.
                 </p>
                 <p style="color:var(--text-muted); font-size: 1.1rem;">
-                    Currently, VEROlabs offers Engineering-focused VR labs designed for undergraduate university students, with expansion into other disciplines underway.
+                    Currently, VEROlabs offers Engineering-focused VR labs designed for undergraduate university
+                    students, with expansion into other disciplines underway.
                 </p>
             </div>
             <div class="tilt-card" style="padding: 10px; display:flex; align-items:center; justify-content:center;">
-                <img src="Screenshot 2026-02-08 172820.png" alt="VR Student" style="border-radius: 15px;">
+                <img src="pexels-sound-on-3761152.jpg" alt="VR Student" style="border-radius: 15px;">
             </div>
         </div>
     </section>
@@ -595,12 +958,16 @@
         <br><br>
         <div class="tilt-card reveal fade-up" style="margin-top:40px; border-left: 4px solid #850dcc;">
             <h3 class="text-gradient" style="margin-bottom:20px;">Marketing Advantage</h3>
-            <p style="color:#ccc; margin-bottom:20px;">Adopting VR in education is more than innovation—it’s a powerful marketing tool for universities and training institutions:</p>
+            <p style="color:#ccc; margin-bottom:20px;">Adopting VR in education is more than innovation—it’s a powerful
+                marketing tool for universities and training institutions:</p>
             <ul class="bullet-list"
                 style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                <li><span>•</span> Differentiate Your Institution – position your brand as a leader in modern education.</li>
-                <li><span>•</span> Boost Student Attraction & Retention – students already use VR for entertainment; bringing it to education enhances appeal.</li>
-                <li><span>•</span> Showcase Quality – immersive labs become a highlight in open days, promotional campaigns, and global partnerships.</li>
+                <li><span>•</span> Differentiate Your Institution – position your brand as a leader in modern education.
+                </li>
+                <li><span>•</span> Boost Student Attraction & Retention – students already use VR for entertainment;
+                    bringing it to education enhances appeal.</li>
+                <li><span>•</span> Showcase Quality – immersive labs become a highlight in open days, promotional
+                    campaigns, and global partnerships.</li>
             </ul>
         </div>
     </section>
@@ -611,35 +978,51 @@
         </div>
 
         <div class="grid-2">
-            <div class="tilt-card">
-                <h3 style="color:#0fd9de; margin-bottom:20px;">Why Choose VEROlabs?</h3>
-                <ul class="bullet-list">
-                    <li><span>✓</span>
-                        <div><strong>All-in-One Platform</strong> – one collective hub for a wide range of VR
-                            experiences.</div>
-                    </li>
-                    <li><span>✓</span>
-                        <div><strong>AI-powered Co-Teacher</strong> – delivering personalized in-lab support, instant answers, and multi-language assistance throughout every VR experience.</div>
-                    </li>
-                </ul>
+            <div class="tilt-card why-card">
+                <div class="why-img-box">
+                    <img src="VEROLabs_Home.png" alt="Platform">
+                </div>
+                <div class="why-txt-box">
+                    <h3 class="text-gradient">Why Choose VEROlabs?</h3>
+                    <ul class="bullet-list">
+                        <li><span>✓</span>
+                            <div><strong>All-in-One Platform</strong> – one collective hub for a wide range of VR
+                                experiences.</div>
+                        </li>
+                        <li><span>✓</span>
+                            <div><strong>AI-powered Co-Teacher</strong> – delivering personalized in-lab support,
+                                instant answers, and multi-language assistance throughout every VR experience.</div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="tilt-card">
-                <h3 style="color:#850dcc; margin-bottom:20px;">Built by VERO, a leader in immersive technologies:</h3>
-                <ul class="bullet-list">
-                    <li><span>✓</span>
-                        <div><strong>Experts in VR Innovation</strong> –  deep expertise in building immersive solutions.
-                        </div>
-                    </li>
-                    <li><span>✓</span>
-                        <div><strong>Academic Understanding</strong> –  proven background in university research labs focused on VR.
-                        </div>
-                    </li>
-                </ul>
+
+            <div class="tilt-card why-card">
+                <a href="https://www.vero-as.com/" target="_blank" class="why-img-box"
+                    style="display: block; cursor: pointer; background: #fff;">
+                    <img src="Vero_logo.png" alt="VERO Logo"
+                        style="object-fit: contain; padding: 40px; transform: scale(0.9);">
+                </a>
+
+                <div class="why-txt-box">
+                    <h3 style="color: #0fd9de;">Built by VERO, a leader in immersive technologies:</h3>
+                    <ul class="bullet-list">
+                        <li><span>✓</span>
+                            <div><strong>Experts in VR Innovation</strong> – deep expertise in building immersive
+                                solutions.</div>
+                        </li>
+                        <li><span>✓</span>
+                            <div><strong>Academic Understanding</strong> – proven background in university research labs
+                                focused on VR.</div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="how" style="background: linear-gradient(to bottom, transparent, rgba(133, 13, 204, 0.05), transparent);">
+    <section id="how"
+        style="background: linear-gradient(to bottom, transparent, rgba(133, 13, 204, 0.05), transparent);">
         <div class="section-header reveal fade-up">
             <h2>HOW IT WORKS?</h2>
         </div>
@@ -648,63 +1031,83 @@
 
             <div class="hiw-row">
                 <div class="hiw-content reveal slide-left">
-                    <div class="hiw-number">01</div>
-                    <div style="font-size: 3rem; margin-bottom: 15px;">🥽</div>
+                    <span class="hiw-number">01</span>
+                    <span style="font-size: 3rem; margin-bottom: 15px;">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5 10H4C2.89543 10 2 10.8954 2 12V17C2 18.1046 2.89543 19 4 19H8C8 18 9 17.5 10 17.5C11 17.5 12 18 12 19H16C17.1046 19 18 18.1046 18 17V12C18 10.8954 17.1046 10 16 10H15L13.5 6H6.5L5 10Z"
+                                stroke="#ffffffc9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+                            <circle cx="7" cy="14.5" r="2.5" stroke="#ffffffc9" stroke-width="2" />
+
+                            <circle cx="13" cy="14.5" r="2.5" stroke="#ffffffc9" stroke-width="2" />
+
+                            <path d="M6 13.5C6 13.5 6 13 6.5 12.5" stroke="#ffffffc9" stroke-width="2"
+                                stroke-linecap="round" />
+                            <path d="M12 13.5C12 13.5 12 13 12.5 12.5" stroke="#ffffffc9" stroke-width="2"
+                                stroke-linecap="round" />
+                        </svg>
+                    </span>
                     <h3 class="hiw-title text-gradient">VR Native Application</h3>
                     <p class="hiw-desc">
                         runs on headsets, providing students with an interactive catalogue of VR experiments.
                     </p>
                 </div>
                 <div class="hiw-visual reveal slide-right">
-                    <div class="img-card img-main"><img src="Screenshot 2026-02-08 172840.jpg" alt="VR App Main"></div>
-                    <div class="img-card img-float"><img src="Screenshot 2026-02-08 172820.png" alt="VR App Detail"></div>
+                    <div class="img-card img-main"><img src="SS1_Login.png" alt="VR App Main"></div>
+                    <div class="img-card img-float"><img src="SS5_wind_page.png" alt="VR App Detail">
+                    </div>
                 </div>
             </div>
 
             <div class="hiw-row reverse">
                 <div class="hiw-content reveal slide-right">
-                    <div class="hiw-number">02</div>
-                    <div style="font-size: 3rem; margin-bottom: 15px;">💻</div>
+                    <span class="hiw-number">02</span>
+                    <span style="font-size: 3rem; margin-bottom: 15px;">&#128187;</span>
                     <h3 class="hiw-title text-gradient">Web Platform</h3>
                     <p class="hiw-desc">
                         manage users, monitor progress, and explore available experiences.
                     </p>
                 </div>
                 <div class="hiw-visual reveal slide-left">
-                    <div class="img-card img-main"><img src="Screenshot 2026-02-08 172906.png" alt="Web Dashboard"></div>
-                    <div class="img-card img-float"><img src="Screenshot 2026-02-08 172840.jpg" alt="Web Analytics"></div>
+                    <div class="img-card img-main"><img src="VEROLabs_Home.png" alt="Web Dashboard">
+                    </div>
+                    <div class="img-card img-float"><img src="Wind_Exp.png" alt="Web Analytics">
+                    </div>
                 </div>
             </div>
 
             <div class="hiw-row">
                 <div class="hiw-content reveal slide-left">
-                    <div class="hiw-number">03</div>
-                    <div style="font-size: 3rem; margin-bottom: 15px;">🧪</div>
+                    <span class="hiw-number">03</span>
+                    <span style="font-size: 3rem; margin-bottom: 15px;">&#128300;</span>
                     <h3 class="hiw-title text-gradient">VR Experiments</h3>
                     <p class="hiw-desc">
                         curated, high-quality VR experiences designed for effective learning.
                     </p>
                 </div>
                 <div class="hiw-visual reveal slide-right">
-                    <div class="img-card img-main"><img src="Screenshot 2026-02-08 172820.png" alt="VR Lab"></div>
-                    <div class="img-card img-float"><img src="Screenshot 2026-02-08 172906.png" alt="VR Detail"></div>
+                    <div class="img-card img-main"><img src="Artboard_7.png" alt="VR Lab"></div>
+                    <div class="img-card img-float"><img src="Artboard_3.png" alt="VR Detail"></div>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <section id="features" class="reveal fade-up">
+    <section id="features" class="reveal fade-up" style="padding-bottom: 100px;">
         <div class="section-header">
             <h2>KEY FEATURES</h2>
         </div>
 
         <div class="features-grid">
-            
+
             <div class="feature-item">
                 <div class="feature-icon">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                        </path>
                         <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
                         <line x1="12" y1="22.08" x2="12" y2="12"></line>
                         <line x1="12" y1="12" x2="12" y2="2"></line>
@@ -727,11 +1130,13 @@
                         <line x1="20" y1="14" x2="23" y2="14"></line>
                         <line x1="1" y1="9" x2="4" y2="9"></line>
                         <line x1="1" y1="14" x2="4" y2="14"></line>
-                        <text x="10" y="13.5" font-family="sans-serif" font-size="4" fill="currentColor" stroke="none">AI</text>
+                        <text x="10" y="13.5" font-family="sans-serif" font-size="4" fill="currentColor"
+                            stroke="none">AI</text>
                     </svg>
                 </div>
                 <h3 class="feature-title text-gradient">AI Co-Teacher</h3>
-                <p class="feature-desc">An intelligent assistant to answer student questions, suggest resources, and save personalized notes throughout every VR experience.</p>
+                <p class="feature-desc">An intelligent assistant to answer student questions, suggest resources, and
+                    save personalized notes throughout every VR experience.</p>
             </div>
 
             <div class="feature-item">
@@ -744,7 +1149,8 @@
                     </svg>
                 </div>
                 <h3 class="feature-title text-gradient">LMS Integration</h3>
-                <p class="feature-desc">Connect seamlessly Moodle & Canvas, syncing progress and assessments to activities instantly.</p>
+                <p class="feature-desc">Connect seamlessly Moodle & Canvas, syncing progress and assessments to
+                    activities instantly.</p>
             </div>
 
             <div class="feature-item">
@@ -756,10 +1162,98 @@
                     </svg>
                 </div>
                 <h3 class="feature-title text-gradient">Single Sign-On</h3>
-                <p class="feature-desc">Microsoft 365 Integration to authenticate users with university email and passwords directly.</p>
+                <p class="feature-desc">Microsoft 365 Integration to authenticate users with university email and
+                    passwords directly.</p>
             </div>
 
         </div>
+    </section>
+
+    <section id="feature-details" class="reveal fade-up" style="padding-top: 0;">
+
+        <div class="spotlight-row">
+            <div class="spotlight-media reveal slide-right">
+                <img src="VEROLabs_Home.png" alt="VR Experiences Catalogue UI">
+            </div>
+            <div class="spotlight-content reveal slide-left">
+                <h3 class="text-gradient" style="font-size: 2rem; margin-bottom: 20px;">VR Experiences Catalogue</h3>
+                <p class="hiw-desc">
+                    One collective hub, multiple disciplines, growing over time.
+                </p>
+            </div>
+        </div>
+
+        <div class="spotlight-row reverse">
+            <div class="spotlight-media reveal slide-left">
+                <img src="co-teacher.png" alt="AI Co-Teacher Chat Interface">
+            </div>
+            <div class="spotlight-content reveal slide-right">
+                <h3 class="text-gradient" style="font-size: 2rem; margin-bottom: 20px;">AI Co-Teacher</h3>
+                <p class="hiw-desc" style="margin-bottom: 15px;">
+                    An intelligent assistant to answer student questions, suggest resources, and save personalized notes
+                    throughout every VR experience.
+                </p>
+                <ul class="bullet-list">
+                    <li><span>•</span> <strong>Personalized Support</strong> — instant answers and multi-language
+                        assistance.</li>
+                    <li><span>•</span> <strong>Sessions History</strong> — revise answers online later during study.
+                    </li>
+                    <li><span>•</span> <strong>Different AI Models</strong> — Choose between Azure OpenAI or Google
+                        Gemini.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="logo-grid" style="justify-content: center; margin-bottom: 120px;">
+            <div class="logo-placeholder"><img src="microsoft-azure-logo.png" alt="Microsoft Azure"></div>
+            <div class="logo-placeholder"><img src="OpenAI.png" alt="OpenAI"></div>
+            <div class="logo-placeholder"><img src="Gemini.png" alt="Google Gemini"></div>
+        </div>
+
+        <div class="spotlight-row">
+            <div class="spotlight-media reveal slide-right"
+                style="border: none; background: transparent; box-shadow: none; display: flex; align-items: center;">
+                <div class="logo-grid" style="justify-content: center;">
+                    <div class="logo-placeholder"><img src="canvas.png" alt="Canvas"></div>
+                    <div class="logo-placeholder"><img src="Moodle.svg" alt="Moodle"></div>
+                </div>
+            </div>
+            <div class="spotlight-content reveal slide-left">
+                <h3 class="text-gradient" style="font-size: 2rem; margin-bottom: 20px;">LMS Integration</h3>
+                <p class="hiw-desc">
+                    Connect seamlessly Moodle & Canvas, syncing progress and assessments to activities instantly. No
+                    more manual grade transfers.
+                </p>
+            </div>
+        </div>
+        
+
+        <div class="spotlight-row reverse">
+            <div class="spotlight-media reveal slide-left">
+                <img src="quick-login.png" alt="Quick Login Screen">
+            </div>
+            <div class="spotlight-content reveal slide-right">
+                <h3 class="text-gradient" style="font-size: 2rem; margin-bottom: 20px;">Quick Login</h3>
+                <p class="hiw-desc">
+                    OTP based access on VR headsets for smooth student login. Remove friction from the classroom
+                    experience with simple, secure code entry.
+                </p>
+            </div>
+        </div>
+
+        <div class="spotlight-row">
+            <div class="spotlight-media reveal slide-right">
+                <img src="Login.png" alt="SSO Login Screen">
+            </div>
+            <div class="spotlight-content reveal slide-left">
+                <h3 class="text-gradient" style="font-size: 2rem; margin-top: 20px;">Single Sign-On (SSO)</h3>
+                <p class="hiw-desc">
+                    Microsoft 365 Integration to authenticate users with university email and passwords directly. No IT
+                    hassle — no need for new passwords.
+                </p>
+                <div class="logo-placeholder"><img src="microsoft-365-logo.png" alt="Microsoft 365"></div>
+            </div>
+        </div>
+
     </section>
 
     <section id="pricing" class="reveal fade-up">
@@ -778,14 +1272,14 @@
                 <li><span>•</span> Scale easily with your student base and academic needs.</li>
             </ul>
             <div style="margin-top:50px;">
-                <button class="cta-btn">Contact Sales</button>
+                <button class="cta-btn" onclick="window.location.href='#contact'">Contact Sales</button>
             </div>
         </div>
     </section>
 
     <section id="contact" class="reveal fade-up">
         <div class="section-header">
-            <h2>GET IN TOUCH</h2>
+            <h2>Get Quote</h2>
         </div>
         <div class="contact-container tilt-card">
             <h3 class="text-gradient" style="margin-bottom: 30px; text-align: center;">Send us a message</h3>
@@ -810,8 +1304,7 @@
     </section>
 
     <footer>
-        <h2 style="font-weight:300; margin-bottom:10px; color:white;">VERO<span class="text-gradient"
-                style="font-weight:700;">labs</span></h2>
+        <img src="verolabs-logo.png" style="margin-left: auto; margin-right: auto; margin-bottom: 20px;" alt="">
         <p style="color:#aaa;">Where Education Meets Innovation.</p>
         <p style="color:#555; margin-top:20px;">&copy; 2026 VEROlabs. All rights reserved.</p>
     </footer>
