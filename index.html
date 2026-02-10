@@ -27,11 +27,10 @@
             scroll-behavior: smooth;
         }
 
-        /* Update this section */
         html, body {
             width: 100%;
             max-width: 100%;
-            overflow-x: hidden; /* Crucial: Cuts off the horizontal overflow */
+            overflow-x: hidden;
             margin: 0;
             padding: 0;
         }
@@ -40,7 +39,6 @@
             background-color: var(--bg-dark);
             color: var(--text-main);
             line-height: 1.7;
-            /* Remove the old overflow-x here, we handled it in html, body above */
         }
 
         a {
@@ -139,7 +137,7 @@
             width: auto;
             display: block;
             mix-blend-mode: screen;
-            max-width: 180px; /* Add this: prevents logo from pushing hamburger off screen */
+            max-width: 180px;
         }
 
         nav ul {
@@ -180,7 +178,6 @@
         }
 
         .btn-login {
-            /* border: 2px solid transparent; */
             background-origin: border-box;
             background-clip: content-box, border-box;
             padding: 8px 25px;
@@ -364,6 +361,80 @@
             border-color: rgba(255, 255, 255, 0.2);
         }
 
+        /* --- KINETIC SPLIT CARDS (New Design) --- */
+        .why-card {
+            padding: 0 !important; /* Reset padding */
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+        }
+
+        /* The Image Container */
+        .why-img-box {
+            height: 240px; /* Fixed height for image area */
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .why-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            transform: scale(1.1); /* Start slightly zoomed in */
+            filter: grayscale(100%) contrast(1.2); /* Start B&W for a tech feel */
+        }
+
+        /* Color Overlay (The "Filter" Effect) */
+        .why-img-box::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* A cool purple/blue tint */
+            background: linear-gradient(135deg, rgba(133, 13, 204, 0.6), rgba(15, 217, 222, 0.4));
+            mix-blend-mode: hard-light;
+            transition: opacity 0.4s ease;
+            opacity: 1;
+        }
+
+        /* The Text Container */
+        .why-txt-box {
+            padding: 35px;
+            flex: 1;
+            background: linear-gradient(to bottom, rgba(5, 5, 16, 0.3), rgba(5, 5, 16, 0.8));
+            position: relative;
+            z-index: 2;
+        }
+
+        .why-txt-box h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            position: relative;
+        }
+
+        /* Hover Effects */
+        .why-card:hover {
+            border-color: rgba(133, 13, 204, 0.5);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(133, 13, 204, 0.2);
+        }
+
+        .why-card:hover .why-img-box img {
+            transform: scale(1); /* Zoom out effect */
+            filter: grayscale(0%) contrast(1); /* Reveal color */
+        }
+
+        .why-card:hover .why-img-box::after {
+            opacity: 0; /* Remove tint */
+        }
+
+        /* --- LAYOUT GRIDS --- */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px;}
@@ -393,7 +464,7 @@
         .hiw-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 20px; }
         .hiw-desc { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px; }
 
-        /* --- NEW FEATURES GRID (To match attachment) --- */
+        /* --- NEW FEATURES GRID --- */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -428,7 +499,6 @@
             transition: 0.3s;
         }
         
-        /* Make strokes slightly thicker on hover and change color */
         .feature-item:hover .feature-icon svg {
             stroke: #0fd9de;
             filter: drop-shadow(0 0 5px rgba(15, 217, 222, 0.5));
@@ -531,7 +601,6 @@
 
     <section class="hero">
         <h1 class="text-white">VEROlabs All-in-One Platform For Immersive VR Education & Training</h1>
-        <!-- <p>For Immersive VR Education & Training</p> -->
 
         <div class="hero-btns">
             <button class="cta-btn" onclick="window.location.href='#contact'">Get Quote</button>
@@ -621,30 +690,39 @@
         </div>
 
         <div class="grid-2">
-            <div class="tilt-card">
-                <h3 style="color:#0fd9de; margin-bottom:20px;">Why Choose VEROlabs?</h3>
-                <ul class="bullet-list">
-                    <li><span>✓</span>
-                        <div><strong>All-in-One Platform</strong> – one collective hub for a wide range of VR
-                            experiences.</div>
-                    </li>
-                    <li><span>✓</span>
-                        <div><strong>AI-powered Co-Teacher</strong> – delivering personalized in-lab support, instant answers, and multi-language assistance throughout every VR experience.</div>
-                    </li>
-                </ul>
+            <div class="tilt-card why-card">
+                <div class="why-img-box">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop" alt="Platform">
+                </div>
+                <div class="why-txt-box">
+                    <h3 class="text-gradient">Why Choose VEROlabs?</h3>
+                    <ul class="bullet-list">
+                        <li><span>✓</span>
+                            <div><strong>All-in-One Platform</strong> – one collective hub for a wide range of VR experiences.</div>
+                        </li>
+                        <li><span>✓</span>
+                            <div><strong>AI-powered Co-Teacher</strong> – delivering personalized in-lab support, instant answers, and multi-language assistance throughout every VR experience.</div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="tilt-card">
-                <h3 style="color:#850dcc; margin-bottom:20px;">Built by VERO, a leader in immersive technologies:</h3>
-                <ul class="bullet-list">
-                    <li><span>✓</span>
-                        <div><strong>Experts in VR Innovation</strong> –  deep expertise in building immersive solutions.
-                        </div>
-                    </li>
-                    <li><span>✓</span>
-                        <div><strong>Academic Understanding</strong> –  proven background in university research labs focused on VR.
-                        </div>
-                    </li>
-                </ul>
+
+            <div class="tilt-card why-card">
+                <a href="https://www.vero-as.com/" target="_blank" class="why-img-box" style="display: block; cursor: pointer; background: rgb(240 240 240 / 66%);">
+                    <img src="Vero_logo.png" alt="VERO Logo" style="object-fit: contain; padding: 40px; transform: scale(0.9);">
+                </a>
+                
+                <div class="why-txt-box">
+                    <h3 style="color: #0fd9de;">Built by VERO, a leader in immersive technologies:</h3>
+                    <ul class="bullet-list">
+                        <li><span>✓</span>
+                            <div><strong>Experts in VR Innovation</strong> – deep expertise in building immersive solutions.</div>
+                        </li>
+                        <li><span>✓</span>
+                            <div><strong>Academic Understanding</strong> – proven background in university research labs focused on VR.</div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
