@@ -812,9 +812,26 @@
                 gap: 40px;
             }
 
-            .hiw-visual {
+            .hiw-visual,
+            .hiw-row .hiw-visual,
+            .hiw-row.reverse .hiw-visual {
                 width: 100%;
-                height: 300px;
+                height: 300px !important;
+                min-height: 300px !important;
+                opacity: 1 !important;
+                /* Force visibility */
+                transform: none !important;
+                /* Reset transform */
+                visibility: visible !important;
+                display: block !important;
+                position: relative;
+            }
+
+            .hiw-visual .img-card {
+                opacity: 1 !important;
+                transform: none !important;
+                visibility: visible !important;
+                position: absolute;
             }
 
             .hamburger {
