@@ -13,7 +13,7 @@
             --card-border: rgba(255, 255, 255, 0.08);
             --brand-gradient: linear-gradient(90deg, #850dcc, #0fd9de);
             --text-main: #ffffff;
-            --text-muted: #a0a0b0;
+            --text-muted: #ffffff;
             --neon-purple: rgba(133, 13, 204, 0.6);
             --neon-blue: rgba(15, 217, 222, 0.6);
         }
@@ -156,7 +156,7 @@
         nav a {
             font-size: 0.95rem;
             font-weight: 500;
-            color: #ccc;
+            color: #ffffff;
             position: relative;
         }
 
@@ -472,7 +472,7 @@
 
         .bullet-list li {
             margin-bottom: 18px;
-            color: #ddd;
+            color: #ffffff;
             display: flex;
             align-items: flex-start;
         }
@@ -859,6 +859,10 @@
                 animation: slideDown 0.3s ease forwards;
             }
 
+            .btn-login {
+                padding: 5px 13px;
+            }
+
             @keyframes slideDown {
                 from {
                     opacity: 0;
@@ -900,6 +904,13 @@
 
         <div class="header-right">
             <a href="https://verolabsxr.com/" target="_blank" class="btn-login">Experiences</a>
+            <a href="https://www.linkedin.com/company/vero-as/" target="_blank"
+                style="display: flex; align-items: center; color: white; ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+            </a>
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -919,9 +930,9 @@
     </section>
 
     <section id="about" class="reveal fade-up">
-        <div class="section-header">
+        <!-- <div class="section-header">
             <h2>ABOUT</h2>
-        </div>
+        </div> -->
         <div class="grid-2">
             <div>
                 <h3 class="text-gradient" style="font-size:2rem; margin-bottom:25px;">About VEROlabs</h3>
@@ -987,7 +998,8 @@
         <br><br>
         <div class="tilt-card reveal fade-up" style="margin-top:40px; border-left: 4px solid #850dcc;">
             <h3 class="text-gradient" style="margin-bottom:20px;">Marketing Advantage</h3>
-            <p style="color:#ccc; margin-bottom:20px;">Adopting VR in education is more than innovation—it’s a powerful
+            <p style="color:#ffffff; margin-bottom:20px;">Adopting VR in education is more than innovation—it’s a
+                powerful
                 marketing tool for universities and training institutions:</p>
             <ul class="bullet-list"
                 style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
@@ -1334,8 +1346,17 @@
 
     <footer>
         <img src="verolabs-logo.png" style="margin-left: auto; margin-right: auto; margin-bottom: 20px;" alt="">
-        <p style="color:#aaa;">Where Education Meets Innovation.</p>
-        <p style="color:#555; margin-top:20px;">&copy; 2026 VEROlabs. All rights reserved.</p>
+        <p style="color:#ffffff;">Where Education Meets Innovation.</p>
+        <div style="margin-top: 20px;">
+            <a href="https://www.linkedin.com/company/vero-as/" target="_blank"
+                style="display: inline-block; transition: 0.3s; color: white;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+            </a>
+        </div>
+        <p style="color:#ffffff; margin-top:20px;">&copy; 2026 VEROlabs. All rights reserved.</p>
     </footer>
 
     <script>
